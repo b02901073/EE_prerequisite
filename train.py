@@ -26,24 +26,18 @@ repeat = 10000 # define repeat time
 ###### START TODO's ######
 # here you need to update (w1, w2, w3, w4, w5) according to their gradient
 # step 1. init (w1, w2, w3, w4, w5)
-w1 = 0
-w2 = 0
-w3 = 0
-w4 = 0
-w5 = 0 
+
 for i in range(repeat):
 	# step 2. calculate loss
-	y_pred = np.dot(x,np.transpose([w1,w2,w3,w4,w5]))
-	loss = y_pred - y
-	gradient = np.dot(np.transpose(x),loss)
-	[w1,w2,w3,w4,w5] = [w1,w2,w3,w4,w5] - l_rate * gradient
-	
+	loss = 0
 	# print cost every iteration
 	cost = np.sum(loss**2) / len(x)
 	cost = np.sqrt(cost)
 	print('iteration: %d | cost: %f' %(i, cost))
 ###### END TODO's ######
 
+# after you finish TODO's un-comment this part
+# visualizing your work
 predicted = np.dot(x,np.transpose([w1,w2,w3,w4,w5]))
 fig, ax = plt.subplots()
 ax.scatter(y, predicted)
