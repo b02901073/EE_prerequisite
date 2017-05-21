@@ -38,6 +38,7 @@ for i in range(repeat):
 
 # after you finish TODO's un-comment this part
 # visualizing your work
+'''
 predicted = np.dot(x,np.transpose([w1,w2,w3,w4,w5]))
 fig, ax = plt.subplots()
 ax.scatter(y, predicted)
@@ -45,3 +46,4 @@ ax.plot([y.min(), y.max()], [y.min(), y.max()], 'k--', lw=4)
 ax.set_xlabel('Measured')
 ax.set_ylabel('Predicted')
 plt.show()
+'''
