@@ -3,35 +3,36 @@ import numpy as np
 from sklearn import linear_model
 import matplotlib.pyplot as plt
 from sklearn.model_selection import cross_val_predict
+
 # read train.csv file
 raw = pd.read_csv("train.csv")
 raw.drop(raw.columns[[0, 1]], axis=1, inplace=True)
 raw = raw.as_matrix()
 raw = np.ravel(raw)
+
 # define x , y
 x = []
 y = []
 
 for m in range(12):
 	for d in range(234):
-		###### START TODO's ######
-		# In this part of code, please deside how many days of data to use
-		# default = 5 days
-		
+		####################################### START TODO's #######################################
+		# In this part of code, please deside how many hours of data to use
+		# default = 5 hours
 		day_prior = 5
-		# x is an array of pm2.5 of [day1 day2 day3 day4 day5 bias]
+		# x is an array of pm2.5 of [hour1 hour2 hour3 hour4 hour5 bias]
 		tmp = raw[m*12 + d : m*12 + d + day_prior]
 		tmp = np.append(tmp, [1])
 		x.append(tmp)
-		# y is value of pm2.5 of [day6]
+		# y is value of pm2.5 of [hour6]
 		y.append(raw[m*12 + d + day_prior])
-		###### END TODO's ######
+		####################################### END TODO's #######################################
 
 x = np.array(x)
 y = np.array(y)
 
-# train using linear regression
-###### START TODO's ######
+# train pm2.5 using linear regression
+####################################### START TODO's #######################################
 # define learning rate
 # small learning rate trains slower but steadily
 l_rate = 0.000000001
@@ -59,9 +60,11 @@ for i in range(repeat):
 	cost = np.sum(loss**2) / len(x)
 	cost = np.sqrt(cost)
 	print('iteration: %d | cost: %f' %(i, cost))
-###### END TODO's ######
+####################################### END TODO's #######################################
 
 # let's see what you have trained
+print('')
+print('after training for %d times, you get' %(repeat))
 print('w1 = ', w1)
 print('w2 = ', w2)
 print('w3 = ', w3)
