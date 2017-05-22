@@ -39,7 +39,7 @@ l_rate = 0.000000001
 
 # define repeat time
 # large repeat time may get closer to the minimun of loss
-repeat = 10000
+repeat = 100
 
 # here you need to update (w1, w2, w3, w4, w5, b) according to their gradient
 # step 1. init (w1, w2, w3, w4, w5, b) 
