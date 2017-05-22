@@ -14,32 +14,65 @@ y = []
 
 for m in range(12):
 	for d in range(234):
-		x.append(raw[m*12+d:m*12+d+5])
-		y.append(raw[m*12+d+5])
+		###### START TODO's ######
+		# In this part of code, please deside how many days of data to use
+		# default = 5 days
+		
+		day_prior = 5
+		# x is an array of pm2.5 of [day1 day2 day3 day4 day5 bias]
+		tmp = raw[m*12 + d : m*12 + d + day_prior]
+		tmp = np.append(tmp, [1])
+		x.append(tmp)
+		# y is value of pm2.5 of [day6]
+		y.append(raw[m*12 + d + day_prior])
+		###### END TODO's ######
 
 x = np.array(x)
 y = np.array(y)
 
 # train using linear regression
-l_rate = 0.000000001   # define learning rate
-repeat = 10000 # define repeat time
 ###### START TODO's ######
-# here you need to update (w1, w2, w3, w4, w5) according to their gradient
-# step 1. init (w1, w2, w3, w4, w5)
+# define learning rate
+# small learning rate trains slower but steadily
+l_rate = 0.000000001
 
+# define repeat time
+# large repeat time may get closer to the minimun of loss
+repeat = 10000
+
+# here you need to update (w1, w2, w3, w4, w5, b) according to their gradient
+# step 1. init (w1, w2, w3, w4, w5, b) 
+w1 = 0
+w2 = 0
+w3 = 0
+w4 = 0
+w5 = 0
+b  = 0
 for i in range(repeat):
 	# step 2. calculate loss
-	loss = 0
+	y_pred = np.dot(x,np.transpose([w1,w2,w3,w4,w5,b]))
+	loss = y_pred - y
+	gradient = np.dot(np.transpose(x),loss)
+	[w1,w2,w3,w4,w5,b] = [w1,w2,w3,w4,w5,b] - l_rate * gradient
+	
 	# print cost every iteration
 	cost = np.sum(loss**2) / len(x)
 	cost = np.sqrt(cost)
 	print('iteration: %d | cost: %f' %(i, cost))
 ###### END TODO's ######
 
-# after you finish TODO's un-comment this part
-# visualizing your work
+# let's see what you have trained
+print('w1 = ', w1)
+print('w2 = ', w2)
+print('w3 = ', w3)
+print('w4 = ', w4)
+print('w5 = ', w5)
+print('b  = ', b)
+
+# un-comment this part of code after you trained
+# you can see how close your predition and correct answer is
 '''
-predicted = np.dot(x,np.transpose([w1,w2,w3,w4,w5]))
+predicted = np.dot(x,np.transpose([w1,w2,w3,w4,w5,b]))
 fig, ax = plt.subplots()
 ax.scatter(y, predicted)
 ax.plot([y.min(), y.max()], [y.min(), y.max()], 'k--', lw=4)
