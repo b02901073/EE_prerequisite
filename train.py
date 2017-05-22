@@ -19,13 +19,13 @@ for m in range(12):
 		####################################### START TODO's #######################################
 		# In this part of code, please deside how many hours of data to use
 		# default = 5 hours
-		day_prior = 5
+		hour_prior = 5
 		# x is an array of pm2.5 of [hour1 hour2 hour3 hour4 hour5 bias]
-		tmp = raw[m*12 + d : m*12 + d + day_prior]
+		tmp = raw[m*12 + d : m*12 + d + hour_prior]
 		tmp = np.append(tmp, [1])
 		x.append(tmp)
 		# y is value of pm2.5 of [hour6]
-		y.append(raw[m*12 + d + day_prior])
+		y.append(raw[m*12 + d + hour_prior])
 		####################################### END TODO's #######################################
 
 x = np.array(x)
