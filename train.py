@@ -60,10 +60,11 @@ for i in range(repeat):
 	cost = np.sum(loss**2) / len(x)
 	cost = np.sqrt(cost)
 	print('iteration: %d | cost: %f' %(i, cost))
+	print('w1:%.4f, w2:%.4f, w3:%.4f, w4:%.4f, w5:%.4f, b:%.4f' %(w1,w2,w3,w4,w5,b))
+	print()
 ####################################### END TODO's #######################################
 
 # let's see what you have trained
-print('')
 print('after training for %d times, you get' %(repeat))
 print('w1 = ', w1)
 print('w2 = ', w2)
